@@ -1,0 +1,134 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 16,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "llvm-mingw-debug",
+      "displayName": "LLVM-MinGW Debug",
+      "description": "Debug build using LLVM-MinGW with FFmpeg support",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "environment": {
+        "CC": "C:/AwaLib/llvm-mingw-20251216-ucrt-x86_64/bin/clang.exe",
+        "CXX": "C:/AwaLib/llvm-mingw-20251216-ucrt-x86_64/bin/clang++.exe"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_PREFIX_PATH": "C:/Qt/6.11.1/llvm-mingw_64",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "VULKAN_SDK": "C:/VulkanSDK/1.4.350.0",
+        "FFMPEG_DIR": "D:/AwaCode/qtmultimedia-f/multimedia/src/3rdparty/ffmpeg/ffmpeg_win64_8.0.2",
+        "FFMPEG_ROOT": "D:/AwaCode/qtmultimedia-f/multimedia/src/3rdparty/ffmpeg/ffmpeg_win64_8.0.2",
+        "PORTAUDIO_ROOT": "D:/AwaCode/qtmultimedia-f/multimedia/src/3rdparty/portaudio-19.7.0/windows",
+        "QZPLAYER_THEME_DIR": "D:/AwaCode/qtmultimedia-f/qzTheme",
+        "QZPLAYER_MD3CONTROLS_DIR": "D:/AwaCode/qtmultimedia-f/Controls/md3",
+        "ENABLE_FFMPEG_PLUGIN": "ON",
+        "ENABLE_WINDOWS_PLUGIN": "ON",
+        "WIN_SDK_ROOT": "C:/Program Files (x86)/Windows Kits/10"
+      }
+    },
+    {
+      "name": "llvm-mingw-release",
+      "displayName": "LLVM-MinGW Release",
+      "description": "Release build using LLVM-MinGW with FFmpeg support",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-release",
+      "environment": {
+        "CC": "C:/AwaLib/llvm-mingw-20251216-ucrt-x86_64/bin/clang.exe",
+        "CXX": "C:/AwaLib/llvm-mingw-20251216-ucrt-x86_64/bin/clang++.exe"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_PREFIX_PATH": "C:/Qt/6.11.1/llvm-mingw_64",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "VULKAN_SDK": "C:/VulkanSDK/1.4.350.0",
+        "FFMPEG_DIR": "D:/AwaCode/qtmultimedia-f/multimedia/src/3rdparty/ffmpeg/ffmpeg_win64_8.0.2",
+        "FFMPEG_ROOT": "D:/AwaCode/qtmultimedia-f/multimedia/src/3rdparty/ffmpeg/ffmpeg_win64_8.0.2",
+        "PORTAUDIO_ROOT": "D:/AwaCode/qtmultimedia-f/multimedia/src/3rdparty/portaudio-19.7.0/windows",
+        "QZPLAYER_THEME_DIR": "D:/AwaCode/qtmultimedia-f/qzTheme",
+        "QZPLAYER_MD3CONTROLS_DIR": "D:/AwaCode/qtmultimedia-f/Controls/md3",
+        "ENABLE_FFMPEG_PLUGIN": "ON",
+        "ENABLE_WINDOWS_PLUGIN": "ON",
+        "WIN_SDK_ROOT": "C:/Program Files (x86)/Windows Kits/10"
+      }
+    },
+    {
+      "name": "android-arm64-release",
+      "displayName": "Android arm64-v8a Release",
+      "description": "Release build for Android arm64-v8a",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-release-arm64-v8a",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_SYSTEM_NAME": "Android",
+        "ANDROID_SDK_ROOT": "C:/Qt/Android",
+        "ANDROID_NDK": "C:/Qt/Android/ndk/28.1.13356709",
+        "CMAKE_TOOLCHAIN_FILE": "C:/Qt/Android/ndk/28.1.13356709/build/cmake/android.toolchain.cmake",
+        "ANDROID_ABI": "arm64-v8a",
+        "ANDROID_PLATFORM": "android-34",
+        "QT_ANDROID_BUILD_ALL_ABIS": "OFF",
+        "CMAKE_PREFIX_PATH": "C:/Qt/6.11.1/android_arm64_v8a",
+        "CMAKE_FIND_ROOT_PATH": "C:/Qt/6.11.1/android_arm64_v8a",
+        "VULKAN_SDK": "C:/VulkanSDK/1.4.350.0",
+        "Vulkan_INCLUDE_DIR": "C:/VulkanSDK/1.4.350.0/Include",
+        "FFMPEG_DIR": "D:/AwaCode/qtmultimedia-f/multimedia/src/3rdparty/ffmpeg/ffmpeg_android_8.0.2/arm64-v8a",
+        "ENABLE_FFMPEG_PLUGIN": "ON",
+        "QZPLAYER_THEME_DIR": "D:/AwaCode/qtmultimedia-f/qzTheme",
+        "QZPLAYER_MD3CONTROLS_DIR": "D:/AwaCode/qtmultimedia-f/Controls/md3",
+        "JDK_HOME": "C:/Program Files/Java/jdk-17"
+      }
+    },
+    {
+      "name": "android-x86_64-debug",
+      "displayName": "Android x86_64 Debug",
+      "description": "Debug build for Android x86_64 (emulator)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-debug-x86_64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_SYSTEM_NAME": "Android",
+        "ANDROID_SDK_ROOT": "C:/Qt/Android",
+        "ANDROID_NDK": "C:/Qt/Android/ndk/28.1.13356709",
+        "CMAKE_TOOLCHAIN_FILE": "C:/Qt/Android/ndk/28.1.13356709/build/cmake/android.toolchain.cmake",
+        "ANDROID_ABI": "x86_64",
+        "ANDROID_PLATFORM": "android-34",
+        "QT_ANDROID_BUILD_ALL_ABIS": "OFF",
+        "CMAKE_PREFIX_PATH": "C:/Qt/6.11.1/android_x86_64",
+        "CMAKE_FIND_ROOT_PATH": "C:/Qt/6.11.1/android_x86_64",
+        "VULKAN_SDK": "C:/VulkanSDK/1.4.350.0",
+        "Vulkan_INCLUDE_DIR": "C:/VulkanSDK/1.4.350.0/Include",
+        "FFMPEG_DIR": "D:/AwaCode/qtmultimedia-f/multimedia/src/3rdparty/ffmpeg/ffmpeg_android_8.0.2/x86_64",
+        "ENABLE_FFMPEG_PLUGIN": "ON",
+        "QZPLAYER_THEME_DIR": "D:/AwaCode/qtmultimedia-f/qzTheme",
+        "QZPLAYER_MD3CONTROLS_DIR": "D:/AwaCode/qtmultimedia-f/Controls/md3",
+        "JDK_HOME": "C:/Program Files/Java/jdk-17"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "llvm-mingw-debug",
+      "configurePreset": "llvm-mingw-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "llvm-mingw-release",
+      "configurePreset": "llvm-mingw-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "android-arm64-release",
+      "configurePreset": "android-arm64-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "android-x86_64-debug",
+      "configurePreset": "android-x86_64-debug",
+      "configuration": "Debug"
+    }
+  ]
+}

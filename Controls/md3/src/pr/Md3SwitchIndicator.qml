@@ -1,0 +1,106 @@
+// Md3SwitchIndicator.qml - Material Design 3 开关指示器内部组件
+import QtQuick
+import QtQuick.Templates as T
+import QtQuick.Controls.impl
+import QtQuick.Controls.Material
+import QtQuick.Controls.Material.impl
+import qz.theme
+
+Rectangle {
+    id: indicator
+    width: control.Material.switchIndicatorWidth
+    height: control.Material.switchIndicatorHeight
+    radius: height / 2
+    y: parent.height / 2 - height / 2
+    color: control.enabled
+        ? (control.checked
+            ? Qt.rgba(Theme.accentColor.r, Theme.accentColor.g, Theme.accentColor.b, Theme.isDark ? 0.4 : 0.2)
+            : "transparent")
+        : (control.checked
+            ? Qt.rgba(Theme.accentColor.r, Theme.accentColor.g, Theme.accentColor.b, 0.12)
+            : "transparent")
+    border.width: 2
+    border.color: control.enabled
+        ? (control.checked
+            ? Qt.rgba(Theme.accentColor.r, Theme.accentColor.g, Theme.accentColor.b, Theme.isDark ? 0.4 : 0.2)
+            : (Theme.isDark ? "#938F99" : "#79747E"))
+        : (control.checked
+            ? Qt.rgba(Theme.accentColor.r, Theme.accentColor.g, Theme.accentColor.b, 0.12)
+            : (Theme.isDark ? "#49454F" : "#E7E0EC"))
+
+    property T.AbstractButton control
+    property alias handle: handle
+
+    Behavior on color {
+        ColorAnimation {
+            duration: 200
+        }
+    }
+    Behavior on border.color {
+        ColorAnimation {
+            duration: 200
+        }
+    }
+
+    Rectangle {
+        id: handle
+        x: Math.max(offset, Math.min(parent.width - offset - width,
+            indicator.control.visualPosition * parent.width - (width / 2)))
+        y: (parent.height - height) / 2
+        // We use scale to allow us to enlarge the circle from the center,
+        // as using width/height will cause it to jump due to the position x/y bindings.
+        // However, a large enough scale on certain displays will show the triangles
+        // that make up the circle, so instead we make sure that the circle is always
+        // its largest size so that more triangles are used, and downscale instead.
+        width: normalSize * largestScale
+        height: normalSize * largestScale
+        radius: width / 2
+        color: indicator.control.enabled
+            ? (indicator.control.checked
+                ? Theme.accentColor
+                : (indicator.control.hovered
+                    ? (Theme.isDark ? "#E6E1E5" : "#1C1B1F")
+                    : (Theme.isDark ? "#CAC4D0" : "#49454F")))
+            : (indicator.control.checked
+                ? (Theme.isDark ? "#938F99" : "#E7E0EC")
+                : (Theme.isDark ? "#49454F" : "#E7E0EC"))
+        scale: indicator.control.down ? 1 : (indicator.control.checked ? checkedSize / largestSize : normalSize / largestSize)
+
+        readonly property int offset: 2
+        readonly property real normalSize: !hasIcon ? indicator.control.Material.switchNormalHandleHeight : checkedSize
+        readonly property real checkedSize: indicator.control.Material.switchCheckedHandleHeight
+        readonly property real largestSize: indicator.control.Material.switchLargestHandleHeight
+        readonly property real largestScale: largestSize / normalSize
+        readonly property bool hasIcon: indicator.control.icon.name.length > 0
+            || indicator.control.icon.source.toString().length > 0
+
+        Behavior on x {
+            enabled: !indicator.control.pressed
+            SmoothedAnimation {
+                duration: 300
+            }
+        }
+
+        Behavior on scale {
+            NumberAnimation {
+                duration: 100
+            }
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: 200
+            }
+        }
+
+        IconImage {
+            x: (parent.width - width) / 2
+            y: (parent.height - height) / 2
+            name: indicator.control.icon.name
+            source: indicator.control.icon.source
+            sourceSize: Qt.size(indicator.control.icon.width, indicator.control.icon.height)
+            color: indicator.control.icon.color
+            visible: handle.hasIcon
+        }
+    }
+}
